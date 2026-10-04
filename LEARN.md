@@ -29,8 +29,9 @@ du domaine.
 
 **Kerberos (niveau concept)** : le protocole d'authentification principal. L'utilisateur
 prouve son identité au DC et reçoit un « ticket » ; il présente ensuite ce ticket aux
-serveurs au lieu de son mot de passe. Les tickets sont signés avec le secret d'un compte
-spécial, **krbtgt**.
+serveurs au lieu de son mot de passe. Le premier ticket (TGT) est chiffré et signé avec le
+secret d'un compte spécial, **krbtgt** ; les tickets de service sont chiffrés avec le secret
+du compte de service.
 
 **NTLM (niveau concept)** : l'ancien protocole d'authentification par défi-réponse, gardé
 pour compatibilité. Sa version 1 (et LM) est faible ; NTLMv2 est meilleure ; Kerberos est
@@ -134,7 +135,8 @@ de risque, de détection et de correction.
    syntaxiquement mais je ne l'ai pas lancé sur un vrai domaine.
 
 4. **Qu'est-ce que krbtgt et pourquoi vérifier l'âge de son mot de passe ?**
-   C'est le compte dont le secret signe tous les tickets Kerberos. S'il a été volé un jour,
+   C'est le compte dont le secret chiffre et signe les TGT (les tickets d'authentification)
+   de tout le domaine. S'il a été volé un jour,
    il reste utilisable tant qu'on ne le change pas. On le renouvelle deux fois, avec une
    pause pour la réplication et la durée de vie des tickets.
 
@@ -178,7 +180,7 @@ de risque, de détection et de correction.
     des faux secrets dans toutes les sorties.
 
 14. **Comment as-tu testé l'outil ?**
-    167 tests pytest. Chaque contrôle doit se déclencher sur l'export vulnérable, rester
+    174 tests pytest. Chaque contrôle doit se déclencher sur l'export vulnérable, rester
     silencieux sur l'export durci, et se déclencher seul après une seule modification d'un
     export minimal propre. Plus les limites de seuils, le score, la CLI, les entrées
     malformées et l'échappement HTML.
@@ -205,7 +207,7 @@ de risque, de détection et de correction.
 
 > Développement d'un auditeur hors ligne de configuration Active Directory en Python
 > (23 contrôles inspirés de l'ANSSI et du CIS, score de risque, rapport HTML, plan de
-> remédiation, 167 tests), validé sur des **données synthétiques** d'une PME fictive.
+> remédiation, 174 tests), validé sur des **données synthétiques** d'une PME fictive.
 
 ## 7. À ne jamais dire
 

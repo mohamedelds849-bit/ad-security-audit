@@ -193,6 +193,15 @@ def test_laps_partial_coverage(minimal, cfg):
     assert "AD-INF-001" in fired(minimal, cfg)
 
 
+@pytest.mark.parametrize("direction,hit", [
+    ("Inbound", False), ("Outbound", True), ("Bidirectional", True), ("BiDirectional", True)])
+def test_trust_direction(direction, hit, minimal, cfg):
+    # SID filtering is applied by the trusting side: an inbound-only trust is not our risk
+    minimal["trusts"].append({"target": "p.local", "direction": direction,
+                              "sidFilteringEnabled": False})
+    assert ("AD-TRU-001" in fired(minimal, cfg)) is hit
+
+
 def test_metadata_quality():
     for c in all_checks():
         assert re.fullmatch(r"AD-[A-Z]{3,4}-\d{3}", c.id)

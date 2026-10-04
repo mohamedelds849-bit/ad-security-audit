@@ -46,7 +46,9 @@ function Iso($dt) {
     return ([datetime]$dt).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
 }
 
-$HintRegex = '(?i)(?<![a-z])(mot de passe|motdepasse|mdp|password|passwd|pwd|pass|pw)(?![a-z])\s*[:=]?\s*\S+'
+# Everything after the keyword is masked (not only the next word): "password is X" or
+# "mdp : Souss 2023" must not leak the second token.
+$HintRegex = '(?i)(?<![a-z])(mot de passe|motdepasse|mdp|password|passwd|pwd|pass|pw)(?![a-z])\s*[:=]?\s*\S.*$'
 function Clean-Description([string]$text) {
     if ([string]::IsNullOrEmpty($text)) { return '' }
     if ($KeepDescriptions) { return $text }
@@ -70,7 +72,7 @@ $Canonical = @{
 function GroupName($g) {
     $sid = $g.SID.Value
     if ($Canonical.ContainsKey($sid)) { return $Canonical[$sid] }
-    return $g.Name
+    return $g.SamAccountName   # unique in the domain (CN/Name is only unique per OU)
 }
 
 # ---- password policy -------------------------------------------------------------
@@ -133,12 +135,20 @@ $groups = @(Get-ADGroup -Filter * | ForEach-Object {
 $compProps = 'Enabled', 'OperatingSystem', 'OperatingSystemVersion', 'LastLogonDate',
     'TrustedForDelegation', 'PrimaryGroupID', 'msLAPS-PasswordExpirationTime',
     'ms-Mcs-AdmPwdExpirationTime'
-# A LAPS attribute missing from the schema makes Get-ADComputer fail: retry without it.
-try {
-    $rawComputers = @(Get-ADComputer -Filter * -Properties $compProps)
-} catch {
-    Write-Warning "LAPS attributes not found in the schema - exporting without them."
-    $rawComputers = @(Get-ADComputer -Filter * -Properties ($compProps | Select-Object -First 6))
+# A LAPS attribute missing from the schema makes Get-ADComputer fail. A domain may have
+# Windows LAPS only, legacy LAPS only, both or none: try each combination, so that one
+# missing schema extension does not hide the other.
+$baseProps = $compProps | Select-Object -First 6
+$rawComputers = $null
+foreach ($lapsSet in @(@('msLAPS-PasswordExpirationTime', 'ms-Mcs-AdmPwdExpirationTime'),
+                       @('msLAPS-PasswordExpirationTime'), @('ms-Mcs-AdmPwdExpirationTime'), @())) {
+    try {
+        $rawComputers = @(Get-ADComputer -Filter * -Properties ($baseProps + $lapsSet))
+        if ($lapsSet.Count -lt 2) { Write-Warning "LAPS attributes read: '$($lapsSet -join ', ')' (others absent from the schema)." }
+        break
+    } catch {
+        if ($lapsSet.Count -eq 0) { throw }
+    }
 }
 function PropValue($obj, [string]$name) {
     $prop = $obj.PSObject.Properties[$name]
@@ -166,6 +176,9 @@ $gmsas = @(Get-ADServiceAccount -Filter * -Properties servicePrincipalName | For
                 servicePrincipalNames = @($_.servicePrincipalName | ForEach-Object { [string]$_ }) }
 })
 $trusts = @(Get-ADTrust -Filter * | ForEach-Object {
+    # Parent-child / tree-root trusts inside the forest never use SID filtering (the forest is
+    # the security boundary): exporting them would only create false positives.
+    if ($_.IntraForest) { return }
     if ($_.ForestTransitive) {
         # Forest trust: SID filtering is on unless SID history was enabled (to verify per case)
         $filtered = -not $_.SIDFilteringForestAware; $type = 'Forest'

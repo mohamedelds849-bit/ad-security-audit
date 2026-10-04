@@ -74,6 +74,9 @@ def test_file_too_large(tmp_path, minimal, monkeypatch):
     (lambda d: d["groups"][0]["members"].append({"type": "user"}), "name"),
     (lambda d: d["gpoSummary"].update(lmCompatibilityLevel=None), "lmCompatibilityLevel"),
     (lambda d: d["trusts"].append({"target": "x.local"}), "sidFilteringEnabled"),
+    (lambda d: d["gpoSummary"].update(lmCompatibilityLevel=9), "hors plage"),
+    (lambda d: d["gpoSummary"].update(lmCompatibilityLevel=-1), "hors plage"),
+    (lambda d: d["passwordPolicy"].update(minPasswordLength=-3), "négative"),
 ])
 def test_schema_violations(minimal, mutate, msg):
     mutate(minimal)

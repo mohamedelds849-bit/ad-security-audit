@@ -274,7 +274,7 @@
       "evidence": [
         "krbtgt : dernier changement le 2019-03-12 (2758 jours, attendu <= 180)"
       ],
-      "why": "Le secret du compte krbtgt signe tous les tickets Kerberos du domaine. S'il a été volé un jour, il reste exploitable tant qu'il n'est pas renouvelé. Le changer régulièrement limite cette fenêtre.",
+      "why": "Le secret du compte krbtgt chiffre et signe les tickets d'authentification (TGT) de tout le domaine. S'il a été volé un jour, il reste exploitable tant qu'il n'est pas renouvelé. Le changer régulièrement limite cette fenêtre.",
       "remediation": "Renouveler le mot de passe krbtgt deux fois, en laissant passer au moins la durée de vie maximale d'un ticket (10 h par défaut) et la réplication complète entre les deux changements. Utiliser le script officiel Microsoft et planifier un renouvellement au moins annuel (ici : tous les 180 jours).",
       "references": [
         "ANSSI vuln_krbtgt — Mot de passe du compte krbtgt inchangé depuis plus d'un an",

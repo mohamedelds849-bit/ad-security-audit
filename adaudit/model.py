@@ -180,6 +180,12 @@ class Directory:
         self.domain = _check_fields(data["domain"], DOMAIN_FIELDS, "domain")
         self.policy = _check_fields(data["passwordPolicy"], POLICY_FIELDS, "passwordPolicy")
         self.gpo = _check_fields(data["gpoSummary"], GPO_FIELDS, "gpoSummary")
+        for name, value in self.policy.items():
+            if isinstance(value, int) and not isinstance(value, bool) and value < 0:
+                raise SchemaError(f"passwordPolicy.{name}: valeur négative {value}")
+        if not 0 <= self.gpo["lmCompatibilityLevel"] <= 5:
+            raise SchemaError("gpoSummary.lmCompatibilityLevel: valeur hors plage 0-5 "
+                              f"({self.gpo['lmCompatibilityLevel']})")
         self.krbtgt = _check_fields(data["krbtgt"], {"pwdLastSet": (DATE, True, None)}, "krbtgt")
         if self.krbtgt["pwdLastSet"] is None:
             raise SchemaError("krbtgt.pwdLastSet: date obligatoire")

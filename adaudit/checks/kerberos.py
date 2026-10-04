@@ -103,7 +103,8 @@ class KrbtgtPasswordAge(Check):
     severity = "high"
     category = "kerberos"
     effort = "30d"
-    why = ("Le secret du compte krbtgt signe tous les tickets Kerberos du domaine. S'il a été "
+    why = ("Le secret du compte krbtgt chiffre et signe les tickets d'authentification (TGT) "
+           "de tout le domaine. S'il a été "
            "volé un jour, il reste exploitable tant qu'il n'est pas renouvelé. Le changer "
            "régulièrement limite cette fenêtre.")
     remediation = ("Renouveler le mot de passe krbtgt deux fois, en laissant passer au moins "

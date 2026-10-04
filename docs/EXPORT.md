@@ -30,9 +30,10 @@ Import-Module ActiveDirectory
 python -m adaudit audit .\ad-export.json --html report.html
 ```
 
-By default the script **redacts** any value following `mdp`, `pwd`, `password`, `pass`...
-in the description field (`mdp: ********`), so the export itself never contains such a
-secret; the auditor still flags the account. `-KeepDescriptions` disables this (not advised).
+By default the script **redacts** everything that follows `mdp`, `pwd`, `password`, `pass`...
+in the description field (`mdp: ********`, up to the end of the description, so that
+"password is X" does not leak X), so the export itself never contains such a secret; the
+auditor still flags the account. `-KeepDescriptions` disables this (not advised).
 
 ## 3. What each section comes from
 
@@ -42,10 +43,10 @@ secret; the auditor still flags the account. `-KeepDescriptions` disables this (
 | `passwordPolicy` | `Get-ADDefaultDomainPasswordPolicy` | lengths, history, lockout |
 | `krbtgt` | `Get-ADUser krbtgt -Properties PasswordLastSet` | date only |
 | `users` | `Get-ADUser -Filter * -Properties Enabled,LastLogonDate,PasswordLastSet,PasswordNeverExpires,PasswordNotRequired,adminCount,servicePrincipalName,DoesNotRequirePreAuth,TrustedForDelegation,TrustedToAuthForDelegation,AccountNotDelegated,Description,whenCreated` | `isBuiltinGuest` = SID ends with -501 |
-| `groups` | `Get-ADGroup -Filter *` + `Get-ADGroupMember` (direct members) | well-known groups renamed to English by SID |
+| `groups` | `Get-ADGroup -Filter *` + `Get-ADGroupMember` (direct members) | well-known groups renamed to English by SID, other groups named by sAMAccountName (unique) |
 | `computers` | `Get-ADComputer -Filter * -Properties Enabled,OperatingSystem,OperatingSystemVersion,LastLogonDate,TrustedForDelegation,PrimaryGroupID,msLAPS-PasswordExpirationTime,ms-Mcs-AdmPwdExpirationTime` | only the LAPS **expiration time** |
 | `managedServiceAccounts` | `Get-ADServiceAccount -Filter *` | gMSA names and SPN |
-| `trusts` | `Get-ADTrust -Filter *` | SIDFilteringQuarantined, SelectiveAuthentication |
+| `trusts` | `Get-ADTrust -Filter *` | SIDFilteringQuarantined, SelectiveAuthentication; intra-forest (parent-child / tree-root) trusts are skipped: SID filtering does not apply inside a forest |
 
 Spot checks you can run by hand (all read-only):
 
@@ -71,7 +72,7 @@ read-only `Get-GPOReport -All -ReportType Html -Path gpo.html` of the GroupPolic
 | `smbSigningRequiredMembers` | same setting in policies linked to server / workstation OUs | true if Enabled everywhere |
 | `llmnrDisabled` | Computer Config > Admin Templates > Network > DNS Client > "Turn off multicast name resolution" | true if Enabled |
 | `netbiosDisabled` | DHCP option 001 (Microsoft) = 2, or NIC setting via script | true if disabled everywhere |
-| `lmCompatibilityLevel` | "Network security: LAN Manager authentication level" | 0-5 (5 = NTLMv2 only, refuse LM & NTLM) |
+| `lmCompatibilityLevel` | "Network security: LAN Manager authentication level" | 0-5 (5 = NTLMv2 only, refuse LM & NTLM). "Not defined" = OS default, 3 on current Windows: write 3, not 5 |
 
 Being honest in this section matters: a `true` you are not sure about hides a risk.
 When in doubt, write the insecure value and verify later.

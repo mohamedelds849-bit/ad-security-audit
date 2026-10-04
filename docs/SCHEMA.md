@@ -11,7 +11,8 @@ General rules
 - Dates: ISO-8601 strings (`2026-09-30T08:00:00Z`) or `null` (= never). A date without a
   time zone is treated as UTC. All ages are computed relative to `exportedAt`, never to the
   current clock, so an audit is reproducible.
-- `int` fields refuse booleans (`true` is not 1). Unknown extra fields are ignored
+- `int` fields refuse booleans (`true` is not 1); password-policy integers must be >= 0 and
+  `lmCompatibilityLevel` must be in 0-5. Unknown extra fields are ignored
   (e.g. `_notice`).
 - Names are compared case-insensitively. Duplicate `samAccountName`, group `name`, computer
   `name` or trust `target` are rejected.
@@ -81,7 +82,8 @@ The `krbtgt` user may appear in `users`; checks ignore it except through the `kr
 - `members` lists DIRECT members only; the auditor expands nesting itself (cycle-safe,
   iterative, no depth limit).
 - `type` is one of `user`, `group`, `computer`, `gmsa`. For `user` the `name` is the
-  `samAccountName`; for `group` it is the group `name`.
+  `samAccountName`; for `group` it is the group `name` (the export script uses the
+  group's sAMAccountName, unique in the domain, for non-well-known groups).
 - Well-known privileged groups MUST use their English canonical names (`Domain Admins`,
   `Administrators`, `Protected Users`...), whatever the Windows language. The export script
   maps them by well-known SID / RID (512, 518, 519, 520, 525, 526, 527, S-1-5-32-544/548/549/550/551).
@@ -109,14 +111,14 @@ The `krbtgt` user may appear in `users`; checks ignore it except through the `kr
 | `smbSigningRequiredMembers` | bool | true | same setting on member servers / workstations |
 | `llmnrDisabled` | bool | true | "Turn off multicast name resolution" = Enabled |
 | `netbiosDisabled` | bool | true | NetBIOS over TCP/IP disabled (DHCP option / NIC setting) |
-| `lmCompatibilityLevel` | int 0-5 | 5 | "Network security: LAN Manager authentication level" |
+| `lmCompatibilityLevel` | int 0-5 (validated) | 5 | "Network security: LAN Manager authentication level" |
 
 ## trusts[]
 
 | Field | Type | Default | Meaning |
 |---|---|---|---|
 | `target` | string | required | trusted domain DNS name |
-| `direction` | string | Bidirectional | Inbound / Outbound / Bidirectional |
+| `direction` | string | Bidirectional | Inbound / Outbound / Bidirectional (case-insensitive). AD-TRU-001 ignores `Inbound`: SID filtering is applied by the trusting side, i.e. on outbound trusts |
 | `trustType` | string | External | External / Forest |
 | `sidFilteringEnabled` | bool | required | External: `SIDFilteringQuarantined`; Forest: `not SIDFilteringForestAware` (to verify per case) |
 | `selectiveAuthentication` | bool | false | SelectiveAuthentication |

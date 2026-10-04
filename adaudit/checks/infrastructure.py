@@ -177,6 +177,10 @@ class TrustWithoutSidFiltering(Check):
     def evaluate(self, d, cfg):
         ev = []
         for t in d.trusts:
+            # SID filtering is enforced by the TRUSTING side, i.e. on our outbound trusts
+            # (ANSSI: "approbation sortante"). An inbound-only trust is filtered by the partner.
+            if t["direction"].lower() == "inbound":
+                continue
             if not t["sidFilteringEnabled"]:
                 extra = "" if t["selectiveAuthentication"] else ", authentification sélective désactivée"
                 ev.append(f"{t['target']} ({t['trustType']}, {t['direction']}) : filtrage des SID désactivé{extra}")

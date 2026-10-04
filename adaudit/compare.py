@@ -23,7 +23,7 @@ def compare(before: dict, after: dict) -> dict:
         "fixed": sorted(set(b_ids) - set(a_ids)),
         "new": sorted(set(a_ids) - set(b_ids)),
         "remaining": sorted(set(a_ids) & set(b_ids)),
-        "titles": {i: (b_ids.get(i) or a_ids.get(i))["title"] for i in set(a_ids) | set(b_ids)},
+        "titles": {i: (b_ids.get(i) or a_ids.get(i))["title"] for i in sorted(set(a_ids) | set(b_ids))},
     }
 
 
