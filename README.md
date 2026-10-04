@@ -111,7 +111,7 @@ matters, remediation, references, ATT&CK mapping. Adding a check = one class wit
 | `agrisouss_quickwins.json` | **74 / 100** (élevé) | 14 |
 | `agrisouss_hardened.json` | **0 / 100** (faible) | 0 |
 
-Sample reports are in `reports/`. Tests: **174 passed** (`python -m pytest`), covering:
+Sample reports are in `reports/`. Tests: **177 passed** (`python -m pytest`), covering:
 each check fires on the vulnerable export and is silent on the hardened one; each check is
 triggered alone by one mutation of a clean minimal export; boundaries; scoring; CLI and exit
 codes; 25+ malformed-input cases; HTML escaping of hostile values; planted fake secrets never

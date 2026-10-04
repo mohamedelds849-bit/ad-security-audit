@@ -180,7 +180,7 @@ de risque, de détection et de correction.
     des faux secrets dans toutes les sorties.
 
 14. **Comment as-tu testé l'outil ?**
-    174 tests pytest. Chaque contrôle doit se déclencher sur l'export vulnérable, rester
+    177 tests pytest. Chaque contrôle doit se déclencher sur l'export vulnérable, rester
     silencieux sur l'export durci, et se déclencher seul après une seule modification d'un
     export minimal propre. Plus les limites de seuils, le score, la CLI, les entrées
     malformées et l'échappement HTML.
@@ -207,7 +207,7 @@ de risque, de détection et de correction.
 
 > Développement d'un auditeur hors ligne de configuration Active Directory en Python
 > (23 contrôles inspirés de l'ANSSI et du CIS, score de risque, rapport HTML, plan de
-> remédiation, 174 tests), validé sur des **données synthétiques** d'une PME fictive.
+> remédiation, 177 tests), validé sur des **données synthétiques** d'une PME fictive.
 
 ## 7. À ne jamais dire
 

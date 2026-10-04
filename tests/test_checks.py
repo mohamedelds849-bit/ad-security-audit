@@ -148,6 +148,34 @@ def test_stale_boundary(minimal, cfg):
     assert "AD-ACC-001" in fired(minimal, cfg)
 
 
+def test_krbtgt_age_boundary(minimal, cfg):
+    # Director audit: a ">" -> ">=" mutation of AD-KRB-004 was not caught before this test.
+    minimal["krbtgt"]["pwdLastSet"] = "2026-04-03T08:00:00Z"  # exactly 180 days
+    assert "AD-KRB-004" not in fired(minimal, cfg)
+    minimal["krbtgt"]["pwdLastSet"] = "2026-04-02T08:00:00Z"  # 181 days
+    assert "AD-KRB-004" in fired(minimal, cfg)
+
+
+def test_spn_password_age_boundary(minimal, cfg):
+    u = _u(minimal, "u.one")
+    u["servicePrincipalNames"] = ["HTTP/app.test.local"]
+    u["pwdLastSet"] = "2025-09-30T08:00:00Z"  # exactly 365 days
+    assert "AD-KRB-002" not in fired(minimal, cfg)
+    u["pwdLastSet"] = "2025-09-29T08:00:00Z"  # 366 days
+    assert "AD-KRB-002" in fired(minimal, cfg)
+
+
+def test_domain_admins_count_boundary(minimal, cfg):
+    da = next(g for g in minimal["groups"] if g["name"] == "Domain Admins")
+    for sam in ("adm.b", "adm.c"):
+        _add_user(minimal, sam)
+        da["members"].append({"type": "user", "name": sam})
+    assert "AD-PRIV-001" not in fired(minimal, cfg)  # 3 = threshold
+    _add_user(minimal, "adm.d")
+    da["members"].append({"type": "user", "name": "adm.d"})
+    assert "AD-PRIV-001" in fired(minimal, cfg)  # 4
+
+
 def test_preauth_on_privileged_account_is_tagged(minimal, cfg):
     _u(minimal, "adm.a")["doesNotRequirePreAuth"] = True
     assert "PRIVILÉGIÉ" in fired(minimal, cfg)["AD-KRB-001"].evidence[0]
