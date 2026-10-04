@@ -1,0 +1,1998 @@
+{
+  "schemaVersion": "1.0",
+  "exportedAt": "2026-09-30T08:00:00Z",
+  "_notice": "DONNÉES SYNTHÉTIQUES - entreprise fictive AgriSouss SARL, aucune donnée réelle - état durci",
+  "domain": {
+    "name": "agrisouss.local",
+    "netbiosName": "AGRISOUSS",
+    "functionalLevel": "Windows2016Domain"
+  },
+  "passwordPolicy": {
+    "minPasswordLength": 14,
+    "complexityEnabled": true,
+    "passwordHistoryCount": 24,
+    "maxPasswordAgeDays": 365,
+    "minPasswordAgeDays": 1,
+    "reversibleEncryptionEnabled": false,
+    "lockoutThreshold": 5,
+    "lockoutDurationMinutes": 15,
+    "lockoutObservationWindowMinutes": 15
+  },
+  "krbtgt": {
+    "pwdLastSet": "2026-07-20T09:00:00Z"
+  },
+  "users": [
+    {
+      "samAccountName": "Administrator",
+      "displayName": "Administrateur intégré",
+      "enabled": true,
+      "lastLogon": "2026-09-28T09:00:00Z",
+      "pwdLastSet": "2017-04-03T09:00:00Z",
+      "whenCreated": "2017-04-03T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 1,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": true,
+      "description": "Compte d'administration intégré du domaine",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "Guest",
+      "displayName": "Invité",
+      "enabled": false,
+      "lastLogon": null,
+      "pwdLastSet": null,
+      "whenCreated": "2017-04-03T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Compte intégré pour l'accès invité",
+      "isBuiltinGuest": true
+    },
+    {
+      "samAccountName": "krbtgt",
+      "displayName": "krbtgt",
+      "enabled": false,
+      "lastLogon": null,
+      "pwdLastSet": "2026-07-20T09:00:00Z",
+      "whenCreated": "2017-04-03T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 1,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Compte de service du centre de distribution de clés",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "adm.y.amrani",
+      "displayName": "Youssef Amrani (admin)",
+      "enabled": true,
+      "lastLogon": "2026-09-29T09:00:00Z",
+      "pwdLastSet": "2024-02-01T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 1,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": true,
+      "description": "Admin domaine - Resp. IT",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "adm.n.elfassi",
+      "displayName": "Nadia El Fassi (admin)",
+      "enabled": true,
+      "lastLogon": "2026-09-25T09:00:00Z",
+      "pwdLastSet": "2025-11-05T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 1,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": true,
+      "description": "Admin domaine - Ingenieure systeme",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "y.amrani",
+      "displayName": "Youssef Amrani",
+      "enabled": true,
+      "lastLogon": "2026-09-29T09:00:00Z",
+      "pwdLastSet": "2026-06-01T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Responsable informatique - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "k.ouhadi",
+      "displayName": "Karim Ouhadi",
+      "enabled": true,
+      "lastLogon": "2026-09-29T09:00:00Z",
+      "pwdLastSet": "2026-03-14T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": true,
+      "description": "Chef comptable - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "it.prestataire",
+      "displayName": "Prestataire InfoSouss",
+      "enabled": false,
+      "lastLogon": "2025-06-02T09:00:00Z",
+      "pwdLastSet": "2023-01-09T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": true,
+      "description": "Compte prestataire InfoSouss",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "s.bakkali",
+      "displayName": "Said Bakkali",
+      "enabled": true,
+      "lastLogon": "2026-09-27T09:00:00Z",
+      "pwdLastSet": "2026-05-02T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": true,
+      "description": "Technicien support - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "o.haddad",
+      "displayName": "Omar Haddad",
+      "enabled": true,
+      "lastLogon": "2026-09-26T09:00:00Z",
+      "pwdLastSet": "2026-04-20T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": true,
+      "description": "Technicien support - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "svc_backup",
+      "displayName": "Service sauvegarde",
+      "enabled": false,
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "pwdLastSet": "2019-06-18T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Remplacé par un gMSA (2026-09)",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "svc_sql",
+      "displayName": "Service SQL Server",
+      "enabled": false,
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "pwdLastSet": "2018-10-02T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Remplacé par un gMSA (2026-09)",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "svc_web",
+      "displayName": "Service intranet",
+      "enabled": true,
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "pwdLastSet": "2026-08-15T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": true,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [
+        "HTTP/intranet.agrisouss.local"
+      ],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Pool IIS intranet",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "svc_scan",
+      "displayName": "Copieur RICOH",
+      "enabled": true,
+      "lastLogon": "2026-09-29T09:00:00Z",
+      "pwdLastSet": "2022-02-07T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": true,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Scanner RICOH 2e etage",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.idrissi",
+      "displayName": "Hamid Idrissi",
+      "enabled": true,
+      "lastLogon": "2026-09-24T09:00:00Z",
+      "pwdLastSet": "2026-01-11T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Ancienne application de pointage",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "test.user",
+      "displayName": "Compte de test",
+      "enabled": false,
+      "lastLogon": null,
+      "pwdLastSet": null,
+      "whenCreated": "2024-02-19T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Test GPO [désactivé - revue 2026-10]",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "r.tazi",
+      "displayName": "Rachid Tazi",
+      "enabled": false,
+      "lastLogon": "2024-12-20T09:00:00Z",
+      "pwdLastSet": "2024-06-01T09:00:00Z",
+      "whenCreated": "2022-01-10T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Ancien responsable IT (parti en 2025)",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "y.tahiri",
+      "displayName": "Youssef Tahiri",
+      "enabled": false,
+      "lastLogon": "2025-03-27T09:00:00Z",
+      "pwdLastSet": "2024-08-10T09:00:00Z",
+      "whenCreated": "2022-02-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Comptabilite - Taroudant [désactivé - revue 2026-10]",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "m.zahiri",
+      "displayName": "Mustapha Zahiri",
+      "enabled": false,
+      "lastLogon": "2025-01-01T09:00:00Z",
+      "pwdLastSet": "2024-08-13T09:00:00Z",
+      "whenCreated": "2024-02-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Commercial - Taroudant [désactivé - revue 2026-10]",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.berrada",
+      "displayName": "Houda Berrada",
+      "enabled": false,
+      "lastLogon": "2025-11-08T09:00:00Z",
+      "pwdLastSet": "2024-09-27T09:00:00Z",
+      "whenCreated": "2021-03-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Export - Agadir [désactivé - revue 2026-10]",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "r.bouzid",
+      "displayName": "Rachid Bouzid",
+      "enabled": false,
+      "lastLogon": "2025-01-09T09:00:00Z",
+      "pwdLastSet": "2024-03-17T09:00:00Z",
+      "whenCreated": "2023-12-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Logistique - Taroudant [désactivé - revue 2026-10]",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "f.lahlou",
+      "displayName": "Fatima Lahlou",
+      "enabled": false,
+      "lastLogon": "2025-01-28T09:00:00Z",
+      "pwdLastSet": "2024-04-03T09:00:00Z",
+      "whenCreated": "2023-06-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Production - Taroudant [désactivé - revue 2026-10]",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "s.kettani",
+      "displayName": "Samira Kettani",
+      "enabled": true,
+      "lastLogon": "2026-09-10T09:00:00Z",
+      "pwdLastSet": "2026-08-07T09:00:00Z",
+      "whenCreated": "2024-03-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Export - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "m.lahlou",
+      "displayName": "Meryem Lahlou",
+      "enabled": true,
+      "lastLogon": "2026-09-10T09:00:00Z",
+      "pwdLastSet": "2026-09-07T09:00:00Z",
+      "whenCreated": "2020-04-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Production - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "o.alaoui",
+      "displayName": "Omar Alaoui",
+      "enabled": true,
+      "lastLogon": "2026-09-18T09:00:00Z",
+      "pwdLastSet": "2026-02-17T09:00:00Z",
+      "whenCreated": "2023-03-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Commercial - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.benali",
+      "displayName": "Hamid Benali",
+      "enabled": true,
+      "lastLogon": "2026-09-23T09:00:00Z",
+      "pwdLastSet": "2026-04-08T09:00:00Z",
+      "whenCreated": "2024-09-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Logistique - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "a.kettani",
+      "displayName": "Anas Kettani",
+      "enabled": true,
+      "lastLogon": "2026-09-21T09:00:00Z",
+      "pwdLastSet": "2026-08-25T09:00:00Z",
+      "whenCreated": "2018-12-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Export - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.mansouri",
+      "displayName": "Hamid Mansouri",
+      "enabled": true,
+      "lastLogon": "2026-09-17T09:00:00Z",
+      "pwdLastSet": "2026-06-19T09:00:00Z",
+      "whenCreated": "2021-05-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Commercial - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "s.bakkali2",
+      "displayName": "Siham Bakkali",
+      "enabled": true,
+      "lastLogon": "2026-09-11T09:00:00Z",
+      "pwdLastSet": "2026-01-21T09:00:00Z",
+      "whenCreated": "2019-08-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "RH - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "s.aitbaha",
+      "displayName": "Salma Ait Baha",
+      "enabled": true,
+      "lastLogon": "2026-09-24T09:00:00Z",
+      "pwdLastSet": "2026-08-28T09:00:00Z",
+      "whenCreated": "2021-02-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "RH - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "n.benali",
+      "displayName": "Nadia Benali",
+      "enabled": true,
+      "lastLogon": "2026-09-05T09:00:00Z",
+      "pwdLastSet": "2026-03-23T09:00:00Z",
+      "whenCreated": "2018-09-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Production - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.zahiri",
+      "displayName": "Hajar Zahiri",
+      "enabled": true,
+      "lastLogon": "2026-09-29T09:00:00Z",
+      "pwdLastSet": "2026-01-22T09:00:00Z",
+      "whenCreated": "2019-11-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Production - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.lahlou",
+      "displayName": "Houda Lahlou",
+      "enabled": true,
+      "lastLogon": "2026-09-25T09:00:00Z",
+      "pwdLastSet": "2026-04-07T09:00:00Z",
+      "whenCreated": "2024-03-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Qualite - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "i.bouzid",
+      "displayName": "Imane Bouzid",
+      "enabled": true,
+      "lastLogon": "2026-09-05T09:00:00Z",
+      "pwdLastSet": "2026-02-24T09:00:00Z",
+      "whenCreated": "2024-08-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "RH - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "y.lahlou",
+      "displayName": "Youssef Lahlou",
+      "enabled": true,
+      "lastLogon": "2026-09-19T09:00:00Z",
+      "pwdLastSet": "2026-06-01T09:00:00Z",
+      "whenCreated": "2019-12-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "RH - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "z.aitlahcen",
+      "displayName": "Zineb Ait Lahcen",
+      "enabled": true,
+      "lastLogon": "2026-09-21T09:00:00Z",
+      "pwdLastSet": "2026-05-08T09:00:00Z",
+      "whenCreated": "2022-12-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Comptabilite - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "a.berrada",
+      "displayName": "Anas Berrada",
+      "enabled": true,
+      "lastLogon": "2026-09-01T09:00:00Z",
+      "pwdLastSet": "2026-09-13T09:00:00Z",
+      "whenCreated": "2021-04-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Export - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "l.mansouri",
+      "displayName": "Leila Mansouri",
+      "enabled": true,
+      "lastLogon": "2026-09-08T09:00:00Z",
+      "pwdLastSet": "2026-09-12T09:00:00Z",
+      "whenCreated": "2023-01-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Qualite - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "s.alaoui",
+      "displayName": "Samira Alaoui",
+      "enabled": true,
+      "lastLogon": "2026-09-25T09:00:00Z",
+      "pwdLastSet": "2026-08-23T09:00:00Z",
+      "whenCreated": "2023-08-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Production - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "b.chraibi",
+      "displayName": "Brahim Chraibi",
+      "enabled": true,
+      "lastLogon": "2026-09-12T09:00:00Z",
+      "pwdLastSet": "2026-05-02T09:00:00Z",
+      "whenCreated": "2023-12-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Export - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "m.belkadi",
+      "displayName": "Meryem Belkadi",
+      "enabled": true,
+      "lastLogon": "2026-09-10T09:00:00Z",
+      "pwdLastSet": "2026-07-06T09:00:00Z",
+      "whenCreated": "2021-10-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Export - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "m.ouali",
+      "displayName": "Mustapha Ouali",
+      "enabled": true,
+      "lastLogon": "2026-09-14T09:00:00Z",
+      "pwdLastSet": "2026-01-04T09:00:00Z",
+      "whenCreated": "2018-07-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Export - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "m.rami",
+      "displayName": "Mustapha Rami",
+      "enabled": true,
+      "lastLogon": "2026-09-24T09:00:00Z",
+      "pwdLastSet": "2026-02-20T09:00:00Z",
+      "whenCreated": "2018-11-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "RH - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "y.aitlahcen",
+      "displayName": "Yassine Ait Lahcen",
+      "enabled": true,
+      "lastLogon": "2026-09-03T09:00:00Z",
+      "pwdLastSet": "2026-02-05T09:00:00Z",
+      "whenCreated": "2022-11-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Commercial - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "s.alaoui2",
+      "displayName": "Said Alaoui",
+      "enabled": true,
+      "lastLogon": "2026-09-10T09:00:00Z",
+      "pwdLastSet": "2026-04-24T09:00:00Z",
+      "whenCreated": "2018-03-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Commercial - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.ouali",
+      "displayName": "Hicham Ouali",
+      "enabled": true,
+      "lastLogon": "2026-09-11T09:00:00Z",
+      "pwdLastSet": "2026-01-09T09:00:00Z",
+      "whenCreated": "2019-10-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Production - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.kettani",
+      "displayName": "Hajar Kettani",
+      "enabled": true,
+      "lastLogon": "2026-09-05T09:00:00Z",
+      "pwdLastSet": "2026-08-24T09:00:00Z",
+      "whenCreated": "2024-03-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Logistique - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "n.belkadi",
+      "displayName": "Nadia Belkadi",
+      "enabled": true,
+      "lastLogon": "2026-09-16T09:00:00Z",
+      "pwdLastSet": "2026-05-22T09:00:00Z",
+      "whenCreated": "2019-10-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Comptabilite - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "k.benali",
+      "displayName": "Karim Benali",
+      "enabled": true,
+      "lastLogon": "2026-09-11T09:00:00Z",
+      "pwdLastSet": "2026-03-12T09:00:00Z",
+      "whenCreated": "2023-03-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Qualite - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "a.chraibi",
+      "displayName": "Ayoub Chraibi",
+      "enabled": true,
+      "lastLogon": "2026-09-07T09:00:00Z",
+      "pwdLastSet": "2026-01-07T09:00:00Z",
+      "whenCreated": "2023-12-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Export - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.benali2",
+      "displayName": "Hajar Benali",
+      "enabled": true,
+      "lastLogon": "2026-09-28T09:00:00Z",
+      "pwdLastSet": "2026-06-20T09:00:00Z",
+      "whenCreated": "2024-05-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Qualite - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "a.ouali",
+      "displayName": "Ayoub Ouali",
+      "enabled": true,
+      "lastLogon": "2026-09-27T09:00:00Z",
+      "pwdLastSet": "2026-05-04T09:00:00Z",
+      "whenCreated": "2022-01-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Qualite - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "s.lahlou",
+      "displayName": "Samira Lahlou",
+      "enabled": true,
+      "lastLogon": "2026-09-21T09:00:00Z",
+      "pwdLastSet": "2026-01-03T09:00:00Z",
+      "whenCreated": "2021-10-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Logistique - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.chraibi",
+      "displayName": "Hassan Chraibi",
+      "enabled": true,
+      "lastLogon": "2026-09-07T09:00:00Z",
+      "pwdLastSet": "2026-09-08T09:00:00Z",
+      "whenCreated": "2023-07-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Export - Taroudant",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "s.alaoui3",
+      "displayName": "Soukaina Alaoui",
+      "enabled": true,
+      "lastLogon": "2026-09-26T09:00:00Z",
+      "pwdLastSet": "2026-01-02T09:00:00Z",
+      "whenCreated": "2018-04-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "RH - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "k.moussaoui",
+      "displayName": "Khadija Moussaoui",
+      "enabled": true,
+      "lastLogon": "2026-09-07T09:00:00Z",
+      "pwdLastSet": "2026-09-12T09:00:00Z",
+      "whenCreated": "2022-02-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "RH - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "s.haddad",
+      "displayName": "Samira Haddad",
+      "enabled": true,
+      "lastLogon": "2026-09-29T09:00:00Z",
+      "pwdLastSet": "2026-08-16T09:00:00Z",
+      "whenCreated": "2020-08-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Production - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "a.naciri",
+      "displayName": "Ayoub Naciri",
+      "enabled": true,
+      "lastLogon": "2026-09-11T09:00:00Z",
+      "pwdLastSet": "2026-03-19T09:00:00Z",
+      "whenCreated": "2019-06-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Commercial - Agadir",
+      "isBuiltinGuest": false
+    },
+    {
+      "samAccountName": "h.ziani",
+      "displayName": "Houda Ziani",
+      "enabled": true,
+      "lastLogon": "2026-09-13T09:00:00Z",
+      "pwdLastSet": "2026-08-22T09:00:00Z",
+      "whenCreated": "2024-02-01T09:00:00Z",
+      "passwordNeverExpires": false,
+      "passwordNotRequired": false,
+      "adminCount": 0,
+      "servicePrincipalNames": [],
+      "doesNotRequirePreAuth": false,
+      "trustedForDelegation": false,
+      "trustedToAuthForDelegation": false,
+      "accountNotDelegated": false,
+      "description": "Commercial - Taroudant",
+      "isBuiltinGuest": false
+    }
+  ],
+  "groups": [
+    {
+      "name": "Domain Admins",
+      "members": [
+        {
+          "type": "user",
+          "name": "Administrator"
+        },
+        {
+          "type": "user",
+          "name": "adm.y.amrani"
+        },
+        {
+          "type": "user",
+          "name": "adm.n.elfassi"
+        }
+      ]
+    },
+    {
+      "name": "Enterprise Admins",
+      "members": [
+        {
+          "type": "user",
+          "name": "Administrator"
+        }
+      ]
+    },
+    {
+      "name": "Schema Admins",
+      "members": [
+        {
+          "type": "user",
+          "name": "Administrator"
+        }
+      ]
+    },
+    {
+      "name": "Administrators",
+      "members": [
+        {
+          "type": "user",
+          "name": "Administrator"
+        },
+        {
+          "type": "group",
+          "name": "Domain Admins"
+        },
+        {
+          "type": "group",
+          "name": "Enterprise Admins"
+        }
+      ]
+    },
+    {
+      "name": "Account Operators",
+      "members": []
+    },
+    {
+      "name": "Backup Operators",
+      "members": []
+    },
+    {
+      "name": "Server Operators",
+      "members": []
+    },
+    {
+      "name": "Print Operators",
+      "members": []
+    },
+    {
+      "name": "DnsAdmins",
+      "members": []
+    },
+    {
+      "name": "Group Policy Creator Owners",
+      "members": [
+        {
+          "type": "user",
+          "name": "Administrator"
+        }
+      ]
+    },
+    {
+      "name": "Key Admins",
+      "members": []
+    },
+    {
+      "name": "Enterprise Key Admins",
+      "members": []
+    },
+    {
+      "name": "Protected Users",
+      "members": [
+        {
+          "type": "user",
+          "name": "Administrator"
+        },
+        {
+          "type": "user",
+          "name": "adm.y.amrani"
+        },
+        {
+          "type": "user",
+          "name": "adm.n.elfassi"
+        }
+      ]
+    },
+    {
+      "name": "IT-Support",
+      "members": [
+        {
+          "type": "user",
+          "name": "s.bakkali"
+        },
+        {
+          "type": "user",
+          "name": "o.haddad"
+        }
+      ]
+    },
+    {
+      "name": "Prestataires",
+      "members": [
+        {
+          "type": "user",
+          "name": "it.prestataire"
+        }
+      ]
+    },
+    {
+      "name": "GRP-Agadir",
+      "members": [
+        {
+          "type": "user",
+          "name": "h.berrada"
+        },
+        {
+          "type": "user",
+          "name": "m.lahlou"
+        },
+        {
+          "type": "user",
+          "name": "o.alaoui"
+        },
+        {
+          "type": "user",
+          "name": "h.benali"
+        },
+        {
+          "type": "user",
+          "name": "a.kettani"
+        },
+        {
+          "type": "user",
+          "name": "h.mansouri"
+        },
+        {
+          "type": "user",
+          "name": "s.bakkali2"
+        },
+        {
+          "type": "user",
+          "name": "s.aitbaha"
+        },
+        {
+          "type": "user",
+          "name": "n.benali"
+        },
+        {
+          "type": "user",
+          "name": "h.zahiri"
+        },
+        {
+          "type": "user",
+          "name": "y.lahlou"
+        },
+        {
+          "type": "user",
+          "name": "z.aitlahcen"
+        },
+        {
+          "type": "user",
+          "name": "a.berrada"
+        },
+        {
+          "type": "user",
+          "name": "y.aitlahcen"
+        },
+        {
+          "type": "user",
+          "name": "h.ouali"
+        },
+        {
+          "type": "user",
+          "name": "h.kettani"
+        },
+        {
+          "type": "user",
+          "name": "n.belkadi"
+        },
+        {
+          "type": "user",
+          "name": "k.benali"
+        },
+        {
+          "type": "user",
+          "name": "a.chraibi"
+        },
+        {
+          "type": "user",
+          "name": "s.lahlou"
+        },
+        {
+          "type": "user",
+          "name": "s.alaoui3"
+        },
+        {
+          "type": "user",
+          "name": "k.moussaoui"
+        },
+        {
+          "type": "user",
+          "name": "s.haddad"
+        },
+        {
+          "type": "user",
+          "name": "a.naciri"
+        },
+        {
+          "type": "group",
+          "name": "GRP-Taroudant"
+        }
+      ]
+    },
+    {
+      "name": "GRP-Taroudant",
+      "members": [
+        {
+          "type": "user",
+          "name": "y.tahiri"
+        },
+        {
+          "type": "user",
+          "name": "m.zahiri"
+        },
+        {
+          "type": "user",
+          "name": "r.bouzid"
+        },
+        {
+          "type": "user",
+          "name": "f.lahlou"
+        },
+        {
+          "type": "user",
+          "name": "s.kettani"
+        },
+        {
+          "type": "user",
+          "name": "h.lahlou"
+        },
+        {
+          "type": "user",
+          "name": "i.bouzid"
+        },
+        {
+          "type": "user",
+          "name": "l.mansouri"
+        },
+        {
+          "type": "user",
+          "name": "s.alaoui"
+        },
+        {
+          "type": "user",
+          "name": "b.chraibi"
+        },
+        {
+          "type": "user",
+          "name": "m.belkadi"
+        },
+        {
+          "type": "user",
+          "name": "m.ouali"
+        },
+        {
+          "type": "user",
+          "name": "m.rami"
+        },
+        {
+          "type": "user",
+          "name": "s.alaoui2"
+        },
+        {
+          "type": "user",
+          "name": "h.benali2"
+        },
+        {
+          "type": "user",
+          "name": "a.ouali"
+        },
+        {
+          "type": "user",
+          "name": "h.chraibi"
+        },
+        {
+          "type": "user",
+          "name": "h.ziani"
+        }
+      ]
+    },
+    {
+      "name": "GRP-Commercial",
+      "members": [
+        {
+          "type": "user",
+          "name": "a.naciri"
+        },
+        {
+          "type": "user",
+          "name": "h.mansouri"
+        },
+        {
+          "type": "user",
+          "name": "h.ziani"
+        },
+        {
+          "type": "user",
+          "name": "m.zahiri"
+        },
+        {
+          "type": "user",
+          "name": "o.alaoui"
+        },
+        {
+          "type": "user",
+          "name": "s.alaoui2"
+        },
+        {
+          "type": "user",
+          "name": "y.aitlahcen"
+        }
+      ]
+    },
+    {
+      "name": "GRP-Comptabilite",
+      "members": [
+        {
+          "type": "user",
+          "name": "n.belkadi"
+        },
+        {
+          "type": "user",
+          "name": "y.tahiri"
+        },
+        {
+          "type": "user",
+          "name": "z.aitlahcen"
+        }
+      ]
+    },
+    {
+      "name": "GRP-Export",
+      "members": [
+        {
+          "type": "user",
+          "name": "a.berrada"
+        },
+        {
+          "type": "user",
+          "name": "a.chraibi"
+        },
+        {
+          "type": "user",
+          "name": "a.kettani"
+        },
+        {
+          "type": "user",
+          "name": "b.chraibi"
+        },
+        {
+          "type": "user",
+          "name": "h.berrada"
+        },
+        {
+          "type": "user",
+          "name": "h.chraibi"
+        },
+        {
+          "type": "user",
+          "name": "m.belkadi"
+        },
+        {
+          "type": "user",
+          "name": "m.ouali"
+        },
+        {
+          "type": "user",
+          "name": "s.kettani"
+        }
+      ]
+    },
+    {
+      "name": "GRP-Logistique",
+      "members": [
+        {
+          "type": "user",
+          "name": "h.benali"
+        },
+        {
+          "type": "user",
+          "name": "h.kettani"
+        },
+        {
+          "type": "user",
+          "name": "r.bouzid"
+        },
+        {
+          "type": "user",
+          "name": "s.lahlou"
+        }
+      ]
+    },
+    {
+      "name": "GRP-Production",
+      "members": [
+        {
+          "type": "user",
+          "name": "f.lahlou"
+        },
+        {
+          "type": "user",
+          "name": "h.ouali"
+        },
+        {
+          "type": "user",
+          "name": "h.zahiri"
+        },
+        {
+          "type": "user",
+          "name": "m.lahlou"
+        },
+        {
+          "type": "user",
+          "name": "n.benali"
+        },
+        {
+          "type": "user",
+          "name": "s.alaoui"
+        },
+        {
+          "type": "user",
+          "name": "s.haddad"
+        }
+      ]
+    },
+    {
+      "name": "GRP-Qualite",
+      "members": [
+        {
+          "type": "user",
+          "name": "a.ouali"
+        },
+        {
+          "type": "user",
+          "name": "h.benali2"
+        },
+        {
+          "type": "user",
+          "name": "h.lahlou"
+        },
+        {
+          "type": "user",
+          "name": "k.benali"
+        },
+        {
+          "type": "user",
+          "name": "l.mansouri"
+        }
+      ]
+    },
+    {
+      "name": "GRP-RH",
+      "members": [
+        {
+          "type": "user",
+          "name": "i.bouzid"
+        },
+        {
+          "type": "user",
+          "name": "k.moussaoui"
+        },
+        {
+          "type": "user",
+          "name": "m.rami"
+        },
+        {
+          "type": "user",
+          "name": "s.aitbaha"
+        },
+        {
+          "type": "user",
+          "name": "s.alaoui3"
+        },
+        {
+          "type": "user",
+          "name": "s.bakkali2"
+        },
+        {
+          "type": "user",
+          "name": "y.lahlou"
+        }
+      ]
+    }
+  ],
+  "computers": [
+    {
+      "name": "DC01",
+      "enabled": true,
+      "operatingSystem": "Windows Server 2019 Standard",
+      "operatingSystemVersion": "10.0 (17763)",
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "isDomainController": true,
+      "trustedForDelegation": true,
+      "lapsPasswordSet": false
+    },
+    {
+      "name": "DC02",
+      "enabled": true,
+      "operatingSystem": "Windows Server 2016 Standard",
+      "operatingSystemVersion": "10.0 (14393)",
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "isDomainController": true,
+      "trustedForDelegation": true,
+      "lapsPasswordSet": false
+    },
+    {
+      "name": "SRV-FILE01",
+      "enabled": true,
+      "operatingSystem": "Windows Server 2022 Standard",
+      "operatingSystemVersion": "10.0 (20348)",
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "SRV-SQL01",
+      "enabled": true,
+      "operatingSystem": "Windows Server 2016 Standard",
+      "operatingSystemVersion": "10.0 (14393)",
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "SRV-APP01",
+      "enabled": true,
+      "operatingSystem": "Windows Server 2019 Standard",
+      "operatingSystemVersion": "10.0 (17763)",
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "SRV-BKP01",
+      "enabled": true,
+      "operatingSystem": "Windows Server 2019 Standard",
+      "operatingSystemVersion": "10.0 (17763)",
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "POS-COMPTA-01",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-29T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-ATELIER-LTSC",
+      "enabled": true,
+      "operatingSystem": "Windows 10 Enterprise LTSC 2021",
+      "operatingSystemVersion": "10.0 (19044)",
+      "lastLogon": "2026-09-29T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-001",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-27T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-002",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-26T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-AGA-003",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-24T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-AGA-004",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-19T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-AGA-005",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-24T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-006",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-25T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-AGA-007",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-20T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-008",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-27T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-AGA-009",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-26T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-010",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-22T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-AGA-011",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-17T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-AGA-012",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-18T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-013",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-014",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-29T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-015",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-17T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-016",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-26T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-017",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-22T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-018",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-17T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-AGA-019",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-27T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-020",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-25T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-021",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-29T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-AGA-022",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-28T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-023",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-25T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-024",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-AGA-025",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-30T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-026",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-16T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-027",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-22T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    },
+    {
+      "name": "PC-TAR-028",
+      "enabled": true,
+      "operatingSystem": "Windows 11 Pro",
+      "operatingSystemVersion": "10.0 (26100)",
+      "lastLogon": "2026-09-25T09:00:00Z",
+      "isDomainController": false,
+      "trustedForDelegation": false,
+      "lapsPasswordSet": true
+    }
+  ],
+  "managedServiceAccounts": [
+    {
+      "name": "gmsa_sql$",
+      "servicePrincipalNames": [
+        "MSSQLSvc/srv-sql01.agrisouss.local:1433"
+      ]
+    },
+    {
+      "name": "gmsa_backup$",
+      "servicePrincipalNames": [
+        "BackupSvc/srv-bkp01.agrisouss.local"
+      ]
+    }
+  ],
+  "gpoSummary": {
+    "lapsDeployed": true,
+    "smbSigningRequiredDCs": true,
+    "smbSigningRequiredMembers": true,
+    "llmnrDisabled": true,
+    "netbiosDisabled": true,
+    "lmCompatibilityLevel": 5
+  },
+  "trusts": [
+    {
+      "target": "souss-logistique.local",
+      "direction": "Bidirectional",
+      "trustType": "External",
+      "sidFilteringEnabled": true,
+      "selectiveAuthentication": true
+    }
+  ]
+}

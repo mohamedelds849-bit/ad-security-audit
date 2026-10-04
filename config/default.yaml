@@ -1,0 +1,57 @@
+# Default thresholds for ad-security-audit.
+# Copy this file, change values, and pass it with --config my.yaml.
+# Each value is justified in docs/SCORING.md and in the check's reference.
+
+thresholds:
+  min_password_length: 12        # ANSSI recommends >= 12 for user accounts (CIS: 14)
+  min_password_history: 12       # CIS: 24; 12 is a pragmatic floor for an SME
+  max_lockout_threshold: 10      # Microsoft security baseline: 10; CIS: 5
+  max_domain_admins: 3           # ANSSI: keep Domain Admins as small as possible
+  stale_days: 180                # enabled account without logon for > 6 months
+  spn_password_max_days: 365     # service account (user with SPN) password age
+  krbtgt_max_days: 180           # ANSSI: renew the krbtgt secret regularly
+  laps_min_coverage: 0.95        # share of enabled member computers with a LAPS password
+  min_lm_compatibility_level: 5  # 5 = send NTLMv2 only, refuse LM and NTLMv1
+
+# Groups whose members are considered privileged (built-in AD administrative groups
+# listed by ANSSI / Microsoft "Appendix B: Privileged Accounts and Groups").
+privileged_groups:
+  - Domain Admins
+  - Enterprise Admins
+  - Schema Admins
+  - Administrators
+  - Account Operators
+  - Backup Operators
+  - Server Operators
+  - Print Operators
+  - DnsAdmins
+  - Group Policy Creator Owners
+  - Key Admins
+  - Enterprise Key Admins
+
+protected_users_group: Protected Users
+
+# Operating systems out of Microsoft support at the time of writing (2026-10).
+# Matching is a case-insensitive substring test; `obsolete_os_exceptions` wins.
+obsolete_os:
+  - Windows XP
+  - Windows Vista
+  - Windows 7
+  - Windows 8
+  - Windows 10            # end of support 2025-10-14 (except LTSC / paid ESU)
+  - Windows Server 2003
+  - Windows Server 2008
+  - Windows Server 2012
+obsolete_os_exceptions:
+  - LTSC
+
+# Words that suggest a password was typed in the description field.
+password_hint_patterns:
+  - "mot de passe"
+  - "motdepasse"
+  - "mdp"
+  - "password"
+  - "passwd"
+  - "pwd"
+  - "pass"
+  - "pw"

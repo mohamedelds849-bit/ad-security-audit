@@ -1,0 +1,519 @@
+{
+  "tool": "ad-security-audit",
+  "version": "1.0.0",
+  "source": "agrisouss_quickwins.json",
+  "domain": "agrisouss.local",
+  "exportedAt": "2026-09-30T08:00:00Z",
+  "inventory": {
+    "users": 59,
+    "groups": 24,
+    "computers": 36,
+    "trusts": 1
+  },
+  "checks_run": 23,
+  "score": {
+    "global": 74,
+    "level": "élevé",
+    "categories": {
+      "privileged": 90,
+      "accounts": 20,
+      "kerberos": 80,
+      "infrastructure": 80,
+      "trusts": 20
+    },
+    "severity_counts": {
+      "critical": 2,
+      "high": 9,
+      "medium": 3,
+      "low": 0
+    },
+    "formula": "global = round(0.5*max(catégories) + 0.5*moyenne(catégories)); catégorie = min(100, Σ points); critical=40 high=20 medium=10 low=5"
+  },
+  "findings": [
+    {
+      "id": "AD-KRB-003",
+      "title": "Délégation Kerberos non contrainte (hors contrôleurs de domaine)",
+      "severity": "critical",
+      "category": "kerberos",
+      "effort": "30d",
+      "affected": 2,
+      "evidence": [
+        "SRV-APP01 (ordinateur) : TrustedForDelegation",
+        "svc_web (utilisateur) : TrustedForDelegation"
+      ],
+      "why": "Un serveur en délégation non contrainte reçoit et garde en mémoire les tickets des utilisateurs qui s'y connectent, y compris ceux des administrateurs. Sa compromission expose ces identités.",
+      "remediation": "Remplacer par une délégation contrainte (ou basée sur les ressources) limitée aux services nécessaires, ou la supprimer. Protéger les comptes d'administration avec Protected Users / « sensible et ne peut pas être délégué ». Seuls les DC doivent avoir ce réglage (par défaut).",
+      "references": [
+        "ANSSI vuln_delegation_t4d — Délégation d'authentification non contrainte",
+        "Microsoft — Kerberos Constrained Delegation overview (Microsoft Learn)"
+      ],
+      "mitre": [
+        {
+          "id": "T1558",
+          "name": "Steal or Forge Kerberos Tickets"
+        },
+        {
+          "id": "T1550.003",
+          "name": "Use Alternate Authentication Material: Pass the Ticket"
+        }
+      ]
+    },
+    {
+      "id": "AD-PRIV-006",
+      "title": "Comptes de service (SPN) membres de groupes privilégiés",
+      "severity": "critical",
+      "category": "privileged",
+      "effort": "30d",
+      "affected": 2,
+      "evidence": [
+        "svc_backup [Administrators, Backup Operators, Domain Admins] : 1 SPN",
+        "svc_sql [Administrators] : 2 SPN"
+      ],
+      "why": "Un compte qui porte un SPN peut faire l'objet d'une demande de ticket de service par n'importe quel utilisateur du domaine, puis d'une tentative de cassage hors ligne de son mot de passe. S'il est administrateur, un mot de passe faible suffit à perdre tout le domaine.",
+      "remediation": "Retirer le compte de service des groupes privilégiés et ne lui donner que les droits nécessaires sur ses serveurs. Le remplacer par un gMSA (mot de passe de 120 caractères renouvelé automatiquement).",
+      "references": [
+        "ANSSI vuln_spn_priv — Comptes privilégiés avec SPN",
+        "Microsoft — Group Managed Service Accounts overview (Microsoft Learn)"
+      ],
+      "mitre": [
+        {
+          "id": "T1558.003",
+          "name": "Steal or Forge Kerberos Tickets: Kerberoasting"
+        }
+      ]
+    },
+    {
+      "id": "AD-INF-001",
+      "title": "LAPS absent ou couverture incomplète",
+      "severity": "high",
+      "category": "infrastructure",
+      "effort": "30d",
+      "affected": 2,
+      "evidence": [
+        "Aucune GPO LAPS déclarée dans l'export",
+        "Couverture LAPS : 0/34 ordinateurs membres (0%, attendu >= 95%)"
+      ],
+      "why": "Sans LAPS, le compte administrateur local a souvent le même mot de passe sur tous les postes : un seul poste compromis donne l'accès administrateur à tous les autres.",
+      "remediation": "Déployer Windows LAPS (intégré à Windows depuis avril 2023) par GPO : mot de passe unique, aléatoire et renouvelé par machine, stocké dans l'AD et lisible uniquement par un groupe d'administration dédié.",
+      "references": [
+        "Microsoft — Windows LAPS overview (Microsoft Learn)",
+        "CIS Benchmark Windows Server — section LAPS"
+      ],
+      "mitre": [
+        {
+          "id": "T1078.003",
+          "name": "Valid Accounts: Local Accounts"
+        },
+        {
+          "id": "T1550.002",
+          "name": "Use Alternate Authentication Material: Pass the Hash"
+        }
+      ]
+    },
+    {
+      "id": "AD-INF-002",
+      "title": "Systèmes d'exploitation obsolètes (hors support)",
+      "severity": "high",
+      "category": "infrastructure",
+      "effort": "90d",
+      "affected": 9,
+      "evidence": [
+        "SRV-FILE01 : Windows Server 2012 R2 Standard",
+        "POS-COMPTA-01 : Windows 7 Professional",
+        "PC-TAR-014 : Windows 10 Pro",
+        "PC-TAR-017 : Windows 10 Pro",
+        "PC-TAR-018 : Windows 10 Pro",
+        "PC-AGA-019 : Windows 10 Pro",
+        "PC-TAR-020 : Windows 10 Pro",
+        "PC-AGA-022 : Windows 10 Pro",
+        "PC-TAR-023 : Windows 10 Pro"
+      ],
+      "why": "Un système hors support ne reçoit plus de correctifs de sécurité : chaque nouvelle faille publiée reste ouverte définitivement.",
+      "remediation": "Planifier la migration (ou l'abonnement ESU temporaire), isoler les machines restantes dans un VLAN filtré et en priorité les contrôleurs de domaine et serveurs exposés.",
+      "references": [
+        "ANSSI vuln_dc_obsolete — DC/RODC ayant un système d'exploitation obsolète",
+        "Microsoft Lifecycle Policy (learn.microsoft.com/lifecycle)"
+      ],
+      "mitre": [
+        {
+          "id": "T1210",
+          "name": "Exploitation of Remote Services"
+        }
+      ]
+    },
+    {
+      "id": "AD-INF-005",
+      "title": "LM / NTLMv1 encore acceptés",
+      "severity": "high",
+      "category": "infrastructure",
+      "effort": "90d",
+      "affected": 1,
+      "evidence": [
+        "LmCompatibilityLevel = 2 (attendu 5) : les clients peuvent encore envoyer LM/NTLMv1"
+      ],
+      "why": "LM et NTLMv1 sont des protocoles d'authentification anciens et cryptographiquement faibles : une réponse capturée permet de retrouver le secret du compte.",
+      "remediation": "Auditer d'abord l'usage de NTLMv1 (événements 4624 avec « Package Name (NTLM only) : NTLM V1 »), corriger les applications concernées, puis fixer « Sécurité réseau : niveau d'authentification LAN Manager » = « Envoyer uniquement des réponses NTLMv2. Refuser LM et NTLM » (niveau 5).",
+      "references": [
+        "CIS Benchmark Windows Server — Network security: LAN Manager authentication level",
+        "Microsoft — Network security: LAN Manager authentication level (Microsoft Learn)"
+      ],
+      "mitre": [
+        {
+          "id": "T1557.001",
+          "name": "Adversary-in-the-Middle: Name Resolution Poisoning and SMB Relay"
+        },
+        {
+          "id": "T1550.002",
+          "name": "Use Alternate Authentication Material: Pass the Hash"
+        }
+      ]
+    },
+    {
+      "id": "AD-KRB-002",
+      "title": "Comptes de service (SPN) avec un mot de passe ancien",
+      "severity": "high",
+      "category": "kerberos",
+      "effort": "90d",
+      "affected": 3,
+      "evidence": [
+        "svc_backup : SPN BackupSvc/srv-bkp01.agrisouss.local, mot de passe âgé de 2660 jours",
+        "svc_sql : SPN MSSQLSvc/srv-sql01.agrisouss.local:1433 (+1), mot de passe âgé de 2919 jours",
+        "svc_web : SPN HTTP/intranet.agrisouss.local, mot de passe âgé de 2009 jours"
+      ],
+      "why": "Tout utilisateur du domaine peut obtenir un ticket chiffré avec le mot de passe d'un compte de service. Un mot de passe humain, ancien et jamais changé est vulnérable à un cassage hors ligne.",
+      "remediation": "Migrer vers des gMSA (Group Managed Service Accounts : mot de passe aléatoire de 120 caractères changé automatiquement). À défaut : mot de passe >= 25 caractères, renouvelé chaque année, AES uniquement, droits minimaux.",
+      "references": [
+        "Microsoft — Group Managed Service Accounts overview (Microsoft Learn)",
+        "ANSSI vuln_kerberos_properties_encryption — Algorithmes de chiffrement des comptes de service"
+      ],
+      "mitre": [
+        {
+          "id": "T1558.003",
+          "name": "Steal or Forge Kerberos Tickets: Kerberoasting"
+        }
+      ]
+    },
+    {
+      "id": "AD-KRB-004",
+      "title": "Secret du compte krbtgt trop ancien",
+      "severity": "high",
+      "category": "kerberos",
+      "effort": "30d",
+      "affected": 1,
+      "evidence": [
+        "krbtgt : dernier changement le 2019-03-12 (2758 jours, attendu <= 180)"
+      ],
+      "why": "Le secret du compte krbtgt signe tous les tickets Kerberos du domaine. S'il a été volé un jour, il reste exploitable tant qu'il n'est pas renouvelé. Le changer régulièrement limite cette fenêtre.",
+      "remediation": "Renouveler le mot de passe krbtgt deux fois, en laissant passer au moins la durée de vie maximale d'un ticket (10 h par défaut) et la réplication complète entre les deux changements. Utiliser le script officiel Microsoft et planifier un renouvellement au moins annuel (ici : tous les 180 jours).",
+      "references": [
+        "ANSSI vuln_krbtgt — Mot de passe du compte krbtgt inchangé depuis plus d'un an",
+        "Microsoft — AD Forest Recovery: resetting the krbtgt password (Microsoft Learn)"
+      ],
+      "mitre": [
+        {
+          "id": "T1558.001",
+          "name": "Steal or Forge Kerberos Tickets: Golden Ticket"
+        }
+      ]
+    },
+    {
+      "id": "AD-PRIV-001",
+      "title": "Trop de membres dans Domain Admins",
+      "severity": "high",
+      "category": "privileged",
+      "effort": "30d",
+      "affected": 1,
+      "evidence": [
+        "7 comptes actifs effectifs (attendu <= 3) : Administrator, adm.n.elfassi, adm.y.amrani, k.ouhadi, o.haddad, s.bakkali, svc_backup"
+      ],
+      "why": "Chaque compte Domain Admins peut prendre le contrôle complet du domaine. Plus ils sont nombreux, plus il y a de chances qu'un seul soit compromis.",
+      "remediation": "Garder 2 ou 3 comptes d'administration dédiés (jamais le compte bureautique quotidien). Déléguer les tâches courantes (réinitialiser un mot de passe, joindre un poste) via des groupes à droits limités sur des OU.",
+      "references": [
+        "ANSSI vuln_privileged_members — Nombre important de membres des groupes privilégiés",
+        "Microsoft — Best Practices for Securing Active Directory, Appendix B / D"
+      ],
+      "mitre": [
+        {
+          "id": "T1078.002",
+          "name": "Valid Accounts: Domain Accounts"
+        }
+      ]
+    },
+    {
+      "id": "AD-PRIV-003",
+      "title": "Comptes privilégiés hors Protected Users ou délégables",
+      "severity": "high",
+      "category": "privileged",
+      "effort": "30d",
+      "affected": 6,
+      "evidence": [
+        "adm.n.elfassi [Administrators, Domain Admins] : hors Protected Users ; délégable (option « sensible » non cochée)",
+        "adm.y.amrani [Administrators, Domain Admins] : hors Protected Users ; délégable (option « sensible » non cochée)",
+        "Administrator [Administrators, Domain Admins, Enterprise Admins, Group Policy Creator Owners, Schema Admins] : hors Protected Users ; délégable (option « sensible » non cochée)",
+        "k.ouhadi [Administrators, Domain Admins] : hors Protected Users ; délégable (option « sensible » non cochée)",
+        "o.haddad [Administrators, Domain Admins] : hors Protected Users ; délégable (option « sensible » non cochée)",
+        "s.bakkali [Administrators, Domain Admins] : hors Protected Users ; délégable (option « sensible » non cochée)"
+      ],
+      "why": "Le groupe Protected Users et l'option « Le compte est sensible et ne peut pas être délégué » limitent ce qu'un service ou un poste compromis peut faire avec l'identité d'un administrateur (pas de délégation, pas de NTLM, pas de mise en cache des identifiants pour Protected Users).",
+      "remediation": "Cocher « sensible et ne peut pas être délégué » sur tous les comptes d'administration et les ajouter à Protected Users après un test (Protected Users interdit NTLM et le chiffrement faible : vérifier les applications). Ne jamais y mettre de comptes de service.",
+      "references": [
+        "ANSSI vuln_protected_users — Comptes privilégiés non membres du groupe Protected Users",
+        "Microsoft — Protected Users Security Group (Microsoft Learn)"
+      ],
+      "mitre": [
+        {
+          "id": "T1550.003",
+          "name": "Use Alternate Authentication Material: Pass the Ticket"
+        },
+        {
+          "id": "T1550.002",
+          "name": "Use Alternate Authentication Material: Pass the Hash"
+        }
+      ]
+    },
+    {
+      "id": "AD-PWD-001",
+      "title": "Politique de mot de passe du domaine trop faible",
+      "severity": "high",
+      "category": "accounts",
+      "effort": "30d",
+      "affected": 2,
+      "evidence": [
+        "Longueur minimale = 7 (attendu >= 12)",
+        "Historique = 5 (attendu >= 12)"
+      ],
+      "why": "Des mots de passe courts, sans historique ou stockés de façon réversible sont plus faciles à deviner ou à retrouver. C'est la première barrière de tous les comptes.",
+      "remediation": "Dans la Default Domain Policy (ou une Fine-Grained Password Policy) : longueur minimale >= 12 (14 recommandé), complexité activée, historique >= 12 (24 recommandé), chiffrement réversible désactivé. Préférer des phrases de passe et communiquer le changement aux utilisateurs avant de l'appliquer.",
+      "references": [
+        "ANSSI — Recommandations relatives à l'authentification multifacteur et aux mots de passe (2021)",
+        "CIS Benchmark Windows Server — Account Policies > Password Policy",
+        "Microsoft — Password policy recommendations (Microsoft Learn)"
+      ],
+      "mitre": [
+        {
+          "id": "T1110.001",
+          "name": "Brute Force: Password Guessing"
+        },
+        {
+          "id": "T1110.003",
+          "name": "Brute Force: Password Spraying"
+        }
+      ]
+    },
+    {
+      "id": "AD-TRU-001",
+      "title": "Approbation sans filtrage des SID",
+      "severity": "high",
+      "category": "trusts",
+      "effort": "30d",
+      "affected": 1,
+      "evidence": [
+        "souss-logistique.local (External, Bidirectional) : filtrage des SID désactivé, authentification sélective désactivée"
+      ],
+      "why": "Sans filtrage des SID (quarantaine), le domaine fait confiance aux identifiants de groupes fournis par le domaine approuvé : une compromission chez le partenaire peut se propager dans ce domaine avec des droits élevés.",
+      "remediation": "Activer le filtrage des SID (netdom trust /quarantine:yes pour une approbation externe), activer l'authentification sélective et supprimer les approbations qui ne servent plus.",
+      "references": [
+        "ANSSI vuln_trusts_domain_notfiltered — Relations d'approbation sortante de type domaine non filtré",
+        "Microsoft — Security considerations for trusts (Microsoft Learn)"
+      ],
+      "mitre": [
+        {
+          "id": "T1134.005",
+          "name": "Access Token Manipulation: SID-History Injection"
+        },
+        {
+          "id": "T1484.002",
+          "name": "Domain or Tenant Policy Modification: Trust Modification"
+        }
+      ]
+    },
+    {
+      "id": "AD-INF-003",
+      "title": "Signature SMB non exigée",
+      "severity": "medium",
+      "category": "infrastructure",
+      "effort": "30d",
+      "affected": 1,
+      "evidence": [
+        "Signature SMB non exigée sur les serveurs et postes membres"
+      ],
+      "why": "Sans signature SMB obligatoire, une machine placée sur le réseau peut relayer l'authentification d'un utilisateur vers un autre serveur.",
+      "remediation": "GPO « Serveur réseau Microsoft : communications signées numériquement (toujours) » = Activé, sur les DC et les serveurs membres, puis sur les postes. Tester les vieux NAS/imprimantes avant généralisation.",
+      "references": [
+        "CIS Benchmark Windows Server — Microsoft network server: Digitally sign communications (always)",
+        "Microsoft — Overview of Server Message Block signing (Microsoft Learn)"
+      ],
+      "mitre": [
+        {
+          "id": "T1557.001",
+          "name": "Adversary-in-the-Middle: Name Resolution Poisoning and SMB Relay"
+        }
+      ]
+    },
+    {
+      "id": "AD-INF-004",
+      "title": "LLMNR et/ou NetBIOS-NS actifs",
+      "severity": "medium",
+      "category": "infrastructure",
+      "effort": "30d",
+      "affected": 2,
+      "evidence": [
+        "LLMNR non désactivé par GPO",
+        "NetBIOS sur TCP/IP non désactivé"
+      ],
+      "why": "LLMNR et NetBIOS-NS diffusent les noms introuvables à tout le réseau local : n'importe quelle machine peut répondre à la place du vrai serveur et recevoir une tentative d'authentification.",
+      "remediation": "GPO « Désactiver la résolution de noms multidiffusion » (LLMNR) = Activé ; désactiver NetBIOS sur TCP/IP (DHCP option ou script). Vérifier que le DNS interne résout bien tous les noms utilisés.",
+      "references": [
+        "CIS Benchmark Windows — Turn off multicast name resolution = Enabled",
+        "Microsoft — DNS Client Group Policy settings (Microsoft Learn)"
+      ],
+      "mitre": [
+        {
+          "id": "T1557.001",
+          "name": "Adversary-in-the-Middle: Name Resolution Poisoning and SMB Relay"
+        }
+      ]
+    },
+    {
+      "id": "AD-PRIV-002",
+      "title": "Groupes imbriqués dans des groupes privilégiés",
+      "severity": "medium",
+      "category": "privileged",
+      "effort": "30d",
+      "affected": 2,
+      "evidence": [
+        "Domain Admins <- IT-Support (2 utilisateur(s) hérite(nt) des droits)",
+        "Administrators <- Prestataires (1 utilisateur(s) hérite(nt) des droits)"
+      ],
+      "why": "Un groupe ordinaire imbriqué dans un groupe d'administration donne des droits d'administrateur à ses membres sans que cela soit visible dans la console. Les gestionnaires de ce groupe deviennent de fait administrateurs du domaine.",
+      "remediation": "Mettre les comptes d'administration directement dans le groupe privilégié et retirer les groupes imbriqués non standard. Revoir qui gère les groupes retirés.",
+      "references": [
+        "ANSSI vuln_privileged_members — Nombre important de membres des groupes privilégiés",
+        "Microsoft — Best Practices for Securing Active Directory, Appendix B"
+      ],
+      "mitre": [
+        {
+          "id": "T1078.002",
+          "name": "Valid Accounts: Domain Accounts"
+        }
+      ]
+    }
+  ],
+  "plan": [
+    {
+      "bucket": "quick",
+      "label": "Quick wins (< 1 semaine)",
+      "actions": []
+    },
+    {
+      "bucket": "30d",
+      "label": "Sous 30 jours",
+      "actions": [
+        {
+          "id": "AD-KRB-003",
+          "severity": "critical",
+          "title": "Délégation Kerberos non contrainte (hors contrôleurs de domaine)",
+          "action": "Remplacer par une délégation contrainte (ou basée sur les ressources) limitée aux services nécessaires, ou la supprimer. Protéger les comptes d'administration avec Protected Users / « sensible et ne peut pas être délégué ». Seuls les DC doivent avoir ce réglage (par défaut).",
+          "affected": 2
+        },
+        {
+          "id": "AD-PRIV-006",
+          "severity": "critical",
+          "title": "Comptes de service (SPN) membres de groupes privilégiés",
+          "action": "Retirer le compte de service des groupes privilégiés et ne lui donner que les droits nécessaires sur ses serveurs. Le remplacer par un gMSA (mot de passe de 120 caractères renouvelé automatiquement).",
+          "affected": 2
+        },
+        {
+          "id": "AD-INF-001",
+          "severity": "high",
+          "title": "LAPS absent ou couverture incomplète",
+          "action": "Déployer Windows LAPS (intégré à Windows depuis avril 2023) par GPO : mot de passe unique, aléatoire et renouvelé par machine, stocké dans l'AD et lisible uniquement par un groupe d'administration dédié.",
+          "affected": 2
+        },
+        {
+          "id": "AD-KRB-004",
+          "severity": "high",
+          "title": "Secret du compte krbtgt trop ancien",
+          "action": "Renouveler le mot de passe krbtgt deux fois, en laissant passer au moins la durée de vie maximale d'un ticket (10 h par défaut) et la réplication complète entre les deux changements. Utiliser le script officiel Microsoft et planifier un renouvellement au moins annuel (ici : tous les 180 jours).",
+          "affected": 1
+        },
+        {
+          "id": "AD-PRIV-001",
+          "severity": "high",
+          "title": "Trop de membres dans Domain Admins",
+          "action": "Garder 2 ou 3 comptes d'administration dédiés (jamais le compte bureautique quotidien). Déléguer les tâches courantes (réinitialiser un mot de passe, joindre un poste) via des groupes à droits limités sur des OU.",
+          "affected": 1
+        },
+        {
+          "id": "AD-PRIV-003",
+          "severity": "high",
+          "title": "Comptes privilégiés hors Protected Users ou délégables",
+          "action": "Cocher « sensible et ne peut pas être délégué » sur tous les comptes d'administration et les ajouter à Protected Users après un test (Protected Users interdit NTLM et le chiffrement faible : vérifier les applications). Ne jamais y mettre de comptes de service.",
+          "affected": 6
+        },
+        {
+          "id": "AD-PWD-001",
+          "severity": "high",
+          "title": "Politique de mot de passe du domaine trop faible",
+          "action": "Dans la Default Domain Policy (ou une Fine-Grained Password Policy) : longueur minimale >= 12 (14 recommandé), complexité activée, historique >= 12 (24 recommandé), chiffrement réversible désactivé. Préférer des phrases de passe et communiquer le changement aux utilisateurs avant de l'appliquer.",
+          "affected": 2
+        },
+        {
+          "id": "AD-TRU-001",
+          "severity": "high",
+          "title": "Approbation sans filtrage des SID",
+          "action": "Activer le filtrage des SID (netdom trust /quarantine:yes pour une approbation externe), activer l'authentification sélective et supprimer les approbations qui ne servent plus.",
+          "affected": 1
+        },
+        {
+          "id": "AD-INF-003",
+          "severity": "medium",
+          "title": "Signature SMB non exigée",
+          "action": "GPO « Serveur réseau Microsoft : communications signées numériquement (toujours) » = Activé, sur les DC et les serveurs membres, puis sur les postes. Tester les vieux NAS/imprimantes avant généralisation.",
+          "affected": 1
+        },
+        {
+          "id": "AD-INF-004",
+          "severity": "medium",
+          "title": "LLMNR et/ou NetBIOS-NS actifs",
+          "action": "GPO « Désactiver la résolution de noms multidiffusion » (LLMNR) = Activé ; désactiver NetBIOS sur TCP/IP (DHCP option ou script). Vérifier que le DNS interne résout bien tous les noms utilisés.",
+          "affected": 2
+        },
+        {
+          "id": "AD-PRIV-002",
+          "severity": "medium",
+          "title": "Groupes imbriqués dans des groupes privilégiés",
+          "action": "Mettre les comptes d'administration directement dans le groupe privilégié et retirer les groupes imbriqués non standard. Revoir qui gère les groupes retirés.",
+          "affected": 2
+        }
+      ]
+    },
+    {
+      "bucket": "90d",
+      "label": "Sous 90 jours",
+      "actions": [
+        {
+          "id": "AD-INF-002",
+          "severity": "high",
+          "title": "Systèmes d'exploitation obsolètes (hors support)",
+          "action": "Planifier la migration (ou l'abonnement ESU temporaire), isoler les machines restantes dans un VLAN filtré et en priorité les contrôleurs de domaine et serveurs exposés.",
+          "affected": 9
+        },
+        {
+          "id": "AD-INF-005",
+          "severity": "high",
+          "title": "LM / NTLMv1 encore acceptés",
+          "action": "Auditer d'abord l'usage de NTLMv1 (événements 4624 avec « Package Name (NTLM only) : NTLM V1 »), corriger les applications concernées, puis fixer « Sécurité réseau : niveau d'authentification LAN Manager » = « Envoyer uniquement des réponses NTLMv2. Refuser LM et NTLM » (niveau 5).",
+          "affected": 1
+        },
+        {
+          "id": "AD-KRB-002",
+          "severity": "high",
+          "title": "Comptes de service (SPN) avec un mot de passe ancien",
+          "action": "Migrer vers des gMSA (Group Managed Service Accounts : mot de passe aléatoire de 120 caractères changé automatiquement). À défaut : mot de passe >= 25 caractères, renouvelé chaque année, AES uniquement, droits minimaux.",
+          "affected": 3
+        }
+      ]
+    }
+  ]
+}

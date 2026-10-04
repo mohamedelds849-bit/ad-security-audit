@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+/out/
+# real exports must never be committed
+ad-export*.json
+*.local.json
